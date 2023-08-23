@@ -13,6 +13,7 @@ const  CartProvider =({children})=>{
             if(existingCartItem){
                 setCart(JSON.parse(existingCartItem))
             }
+            
     },[]);
 
    

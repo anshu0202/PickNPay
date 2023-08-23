@@ -5,9 +5,17 @@ import Layout from '../components/Layout/Layout'
 import { getAllCategory, getAllProductsList, getFilterProducts, getTotalCount } from '../services/ProductApi';
 import { toast } from 'react-hot-toast';
 import {  useNavigate} from 'react-router-dom';
-import { Checkbox, Radio } from 'antd';
+// import { Checkbox, Radio } from 'antd';
 import { Prices } from '../components/Prices';
 import { useCart } from '../context/cart';
+import { useWishList } from '../context/wishlist';
+
+import HomeBanner from '../components/HomeComponent/HomeBanner';
+// import { fa-regular, fa-heart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faEye, faHeart } from '@fortawesome/free-solid-svg-icons'
+
+import Filter from '../components/HomeComponent/Filter';
 
 
 const HomePage = () => {
@@ -29,6 +37,10 @@ const HomePage = () => {
    const [loading,setLoading]=useState(false)
 
    const [cart,setCart]=useCart();
+
+   const [wishList,setWishList]=useWishList();
+
+   console.log("wish list is ",wishList)
 
   const navigate=useNavigate();
 
@@ -137,65 +149,70 @@ const filterProduct= async()=>{
    }
 
 
-   
+   const handleWishlist=(product)=>{
+
+      console.log("pro to add is ",product)
+    
+       setWishList([...wishList,product]);
+       localStorage.setItem('wishList',JSON.stringify([...wishList,product]));
+
+
+           toast.success(`${product.name} has been added to wishlist`)
+   }
 
 
   return (
-    <Layout title={"PickNPay"}>
-    <div className="row mt-3">
-
+    <Layout title={"PickNPay"}  >
+    <HomeBanner/>
+    <div className="row mt-3 home-container" style={{backgroundColor:" rgb(243, 242, 242);"}}>
+   
           <div className="col-md-2">
-            <h4 className='text-center'>
-              Filter By Category  </h4>
-              <div className="d-flex flex-column">
-
-              {
-                categories?.map(c=>(
-                  <Checkbox key={c._id} onChange={(e)=>{ handleFilter(e.target.checked, c._id)}} >{c.name}</Checkbox>
-                ))
-              }
-              </div>
-              <h4 className='text-center mt-4'>
-              Filter By Price  </h4>
-              <div className="d-flex flex-column">
-              <Radio.Group onChange={(e)=>{setRadio(e.target.value)}} >
-                {
-                  Prices?.map(p=>(
-                    <div key={p._id}>
-                    <Radio value={p.array}> {p.name}
-                    </Radio>
-                    </div>
-                  ))
-                }
-              </Radio.Group>
-             
-              </div>
-              <div className="d-flex flex-column ">
-                
-               <button className='btn btn-danger' onClick={()=>{window.location.reload()}}>Reset Filters</button>
-              </div>
+          <Filter handleFilter={handleFilter} setRadio={setRadio} categories={categories} Prices={Prices}/>
+            
           </div>
           
          
-          <div className="col-md-9">
+          <div className="col-md-10 home-pro-list">
           
-          <h1 className='text-center'>All Products 
-          </h1>
-          <div className="d-flex flex-wrap">
+          <h2 className='text-center mt-2' >Crazy Deals
+          </h2>
+
+        
+          <div className="d-flex flex-wrap pro-card">
+       
           {
           products?.map(product =>(
         
-           <div className="card m-2"   >
-  <img src={`${URL}/api/v1/product/product-photo/${product._id}`} style={{width: '18rem'}} className="card-img-top" alt={product.name} />
+           <div className="card m-2 card-box" style={{width: '17rem'}}  >
+           <FontAwesomeIcon icon={faHeart}  className='faHeart' onClick={()=>{handleWishlist(product)}}  />
+           <FontAwesomeIcon icon={faEye}  className='faEye'  onClick={()=>{navigate(`/product/${product.slug}`)}} />
+         
+         
+  <img src={`${URL}/api/v1/product/product-photo/${product._id}`}  className="card-img-top"
+   style={{ height: "200px", objectFit: "cover" }} 
+   alt={product.name} />
+  
   <div className="card-body">
     <h5 className="card-title">{product.name}</h5>
-    <p className="card-text">{product.description.substring(0,20)}....</p>
-    <p className="card-text"> ₹ {product.price}</p>
-    <button className='btn btn-primary ms-1' onClick={()=>{navigate(`/product/${product.slug}`)}}>More Details</button>
-    <button className='btn btn-secondary ms-1' onClick={()=>{setCart([...cart,product]);
+    <p className="card-text">{product.description.substring(0,25)}....</p>
+    <div className='pro-price'>
+      <div className="card-text fp">    ₹ {product.price-500} </div>
+      <div className="card-text sp">  ₹ {product.price} </div>
+
+      <div className='off'> ( 10 % OFF ) </div>
+    </div>
+   
+    <div className='card-btn'>
+    
+    <button className='card-btn-details' onClick={()=>{navigate(`/product/${product.slug}`)}}>More Details</button>
+    <button className='card-btn-add' onClick={()=>{setCart([...cart,product]);
     localStorage.setItem('cart', JSON.stringify([...cart,product]));
     toast.success(`${product.name} has been added to cart`);
-    }} >ADD TO CART</button>
+    }} >Add to cart</button>
+    </div>
+           
+         
+     
   </div>
 </div>
           )) 
@@ -214,7 +231,12 @@ const filterProduct= async()=>{
               )}
           </div>
           </div>
-    </div>
+    </div> 
+    
+
+    
+    
+
     </Layout>
   )
 }

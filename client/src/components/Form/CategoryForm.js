@@ -9,7 +9,7 @@ const CategoryForm = ({handleSubmit,value,setvalue}) => {
   </div>
 
  
-  <button type="submit" className="btn btn-primary">Create</button>
+  <button type="submit" className="btn btn-primary" >Create</button>
 </form>
 
       

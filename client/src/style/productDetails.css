@@ -1,0 +1,70 @@
+.product-details{
+   
+    display: flex;
+    /* border: 2px solid red; */
+    /* align-items: center; */
+    justify-content: center;
+    border-radius: 10px;
+    width: 90%;
+    margin: auto;
+    margin-top: 100px;
+    padding: 10px 2px;
+    /* box-shadow: 0px 0px 10px -2px rgb(99, 98, 98); */
+}
+.product-details .left{
+    
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    
+}
+.product-details .right{
+    
+    border: 2px solid red;
+    padding: 2%;
+    
+}
+.product-price{
+    border: 2px solid green;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.similar-products{
+    /* border: 2px solid red; */
+    padding: 1.5rem;
+}
+
+.pro-card-details{
+    /* display: flex; */
+}
+
+
+
+/* wish list  */
+
+.wishList-box{
+    margin-top: 100px;
+    /* border: 2px solid red; */
+}
+
+.wishList-content{
+    /* border: 2px solid green; */
+    
+}
+
+.wish-header{
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem 1rem;
+}
+.wishlist-count{
+   font-weight: 400;
+   color: rgb(82, 81, 81);
+}
+
+.pro-wishlist{
+    display: flex;
+    
+}

@@ -94,12 +94,12 @@ const CreateCategory = () => {
     <Layout title={"Create-Category"}>
       <div className="container-fluid m-3 p-3">
         <div className="row">
-          <div className="col-md-3">
+          <div className="admin-dashboard-category">
             <AdminMenu />
           </div>
 
-          <div className="col-md-9">
-            <div className="p-3 w-50">
+          <div className="col-md-9 category-form">
+            <div className="p-3 w-50" style={{margin:"auto"}}>
             <h1 className="text-center">Manage Category</h1>
               <CategoryForm
                 value={name}
@@ -107,7 +107,7 @@ const CreateCategory = () => {
                 setvalue={setName}
               />
             </div>
-            <div className="w-75">
+            <div className="w-75" style={{margin:"auto"}} >
               <table className="table">
                 <thead>
                   <tr>

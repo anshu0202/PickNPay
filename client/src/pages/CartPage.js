@@ -120,7 +120,7 @@ const CartPage = () => {
                                 Name: {product.name}
                             </p>
                             <p>
-                               Description :  {product.description.substring(0,30)}...
+                               Description :  {product.description}
                             </p>
                             <p>₹ Price : {product.price}</p>
                             <button className='btn btn-danger' onClick={()=>{removeCartItem(product?._id)}}>Remove</button>
