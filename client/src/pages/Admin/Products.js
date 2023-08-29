@@ -18,7 +18,7 @@ const Product = () => {
     try {
       const data = await getAllProducts();
 
-      // console.log("data is ",data)
+      console.log("data is  get all  ", data);
       if (data?.success) {
         setProducts(data?.products);
       } else {
@@ -34,39 +34,7 @@ const Product = () => {
   }, []);
 
   return (
-    //     <Layout>
-    //         <div className='row container-fluid m-3 p-3'>
-    //         <div className="col-md-3 ">
-    //             <AdminMenu/>
-    //         </div>
-    //         <div className='col-md-9'>
-    //         <h1 className='text-center'>
-    //             All Products List
-    //         </h1>
-    //         <div className='d-flex flex-wrap'>
-
-    //         {
-    //           products?.map(product =>(
-    //             <Link className='product-link' key={product._id} to={`/dashboard/admin/products/${product.slug}`}>
-
-    //            <div className="card m-2"   style={{width: '18rem'}}>
-    //   <img src={`${URL}/api/v1/product/product-photo/${product._id}`} className="card-img-top" alt={product.name} />
-    //   <div className="card-body">
-    //     <h5 className="card-title">{product.name}</h5>
-    //     <p className="card-text">{product.description}</p>
-
-    //   </div>
-    // </div>
-    //             </Link>
-
-    //           ))
-    //         }
-    //         </div>
-
-    //         </div>
-
-    //         </div>
-    //     </Layout>
+    
     <Layout>
       <div className="admin-dashboard-product">
         <AdminMenu />

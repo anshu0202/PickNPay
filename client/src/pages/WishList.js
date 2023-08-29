@@ -23,21 +23,52 @@ const WishList = () => {
     // localStorage.setItem("wishList", JSON.stringify([...wishList, product]));
 
     // toast.success(`${product.name} has been removed from wishlist`);
-    try{
-      let myWishList=[...wishList];
-      let index=myWishList.findIndex(item=> item._id===pid)
-      myWishList.splice(index,1);
-      setWishList(myWishList)
-      localStorage.setItem('wishList',JSON.stringify(myWishList));
-        toast.success(`Product has been removed from wishlist`);
-}
-catch(error){
-  console.log("Error while removing wishlist item ",error.message);
-}
+    try {
+      let myWishList = [...wishList];
+      let index = myWishList.findIndex((item) => item._id === pid);
+      myWishList.splice(index, 1);
+      setWishList(myWishList);
+      localStorage.setItem("wishList", JSON.stringify(myWishList));
+      toast.success(`Product has been removed from wishlist`);
+    } catch (error) {
+      console.log("Error while removing wishlist item ", error.message);
+    }
+  };
+
+  const handleAddToCart = (product) => {
+    // Check if the same product with the same size is already in the cart
+
+    // console.log("producvt is ", product);
+    const existingCartItem = cart.find((item) => item._id === product._id);
+
+    if (existingCartItem) {
+      
+      toast.success(`${product.name} has been added to cart.`);
+      return;
+    }
+
+    // If not already in the cart, add the new cart item
+    const newCartItem = {
+      _id: product._id,
+      size: product.list[0].size,
+      price: product.list[0].price,
+      quantity: 1,
+      offer: product.list[0].offer,
+      description: product.description,
+      name: product.name,
+      category: product.category.name,
+      subCategory: product.subCategory,
+      list: product.list,
+      // Other relevant product details
+    };
+
+    setCart((prevCart) => [...prevCart, newCartItem]);
+    localStorage.setItem("cart", JSON.stringify([...cart, newCartItem]));
+    toast.success(`${product.name} has been added to cart.`);
   };
 
   return (
-    <Layout title={'WishList'}>
+    <Layout title={"WishList"}>
       <div className="wishList-box">
         {wishList.length == 0 ? (
           <>
@@ -86,13 +117,35 @@ catch(error){
                         {product.description.substring(0, 25)}....
                       </p>
                       <div className="pro-price">
-                        <div className="card-text fp">
-                          {" "}
-                          ₹ {product.price - 500}{" "}
-                        </div>
-                        <div className="card-text sp"> ₹ {product.price} </div>
+                        {product.list[0].offer === 0 ? (
+                          <>
+                            {" "}
+                            <div className="card-text fp">
+                              {" "}
+                              ₹ {product.list[0].price}{" "}
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="card-text fp">
+                              {" "}
+                              ₹{" "}
+                              {product.list[0].price -
+                                (product.list[0].price *
+                                  product.list[0].offer) /
+                                  100}{" "}
+                            </div>
+                            <div className="card-text sp">
+                              {" "}
+                              ₹ {product.list[0].price}{" "}
+                            </div>
 
-                        <div className="off"> ( 10 % OFF ) </div>
+                            <div className="off">
+                              {" "}
+                              ( {product.list[0].offer} % OFF ){" "}
+                            </div>
+                          </>
+                        )}
                       </div>
 
                       <div className="card-btn">
@@ -106,15 +159,18 @@ catch(error){
                         </button>
                         <button
                           className="card-btn-add"
+                          // onClick={() => {
+                          //   setCart([...cart, product]);
+                          //   localStorage.setItem(
+                          //     "cart",
+                          //     JSON.stringify([...cart, product])
+                          //   );
+                          //   toast.success(
+                          //     `${product.name} has been added to cart`
+                          //   );
+                          // }}
                           onClick={() => {
-                            setCart([...cart, product]);
-                            localStorage.setItem(
-                              "cart",
-                              JSON.stringify([...cart, product])
-                            );
-                            toast.success(
-                              `${product.name} has been added to cart`
-                            );
+                            handleAddToCart(product);
                           }}
                         >
                           Add to cart

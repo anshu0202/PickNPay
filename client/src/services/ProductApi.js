@@ -20,14 +20,14 @@ export const getAllCategory=async()=>{
 }
 
 
-export const createCategory=async(name)=>{
+export const createCategory=async(cat)=>{
     
-    const data=await axios.post(`${URL}/api/v1/category/create-category`,{name})
+    const data=await axios.post(`${URL}/api/v1/category/create-category`,cat)
     return data;
 }
 
-export const updateCategory=async(id,name)=>{
-    const {data}=await axios.put(`${URL}/api/v1/category/update-category/${id}`,name);
+export const updateCategory=async(id,body)=>{
+    const {data}=await axios.put(`${URL}/api/v1/category/update-category/${id}`,body);
         return data;
 }
 
@@ -71,6 +71,10 @@ export const getSingleProduct=async(slug)=>{
         return data;
 }
 
+export const getSingleProductId=async(id)=>{
+    const {data}=await axios.get(`${URL}/api/v1/product/get-product-id/${id}`);
+    return data;
+}
 
 export const getFilterProducts= async(checked,radio)=>{
      const {data} =await axios.post(`${URL}/api/v1/product/product-filters`,{checked,radio})
@@ -101,6 +105,7 @@ export const getCategoryProduct=async(slug)=>{
 
 export const getAllOrders=async()=>{
      const {data}=await axios.get(`${URL}/api/v1/auth/orders`);
+     console.log("all my orders ",data)
      return data;
 }
 
@@ -111,5 +116,12 @@ export const getAllOrdersAdmin=async()=>{
 
 export const updateOrder=async(orderId,body)=>{
     const {data}=await  axios.put(`${URL}/api/v1/auth/order-status/${orderId}`,body);
+    return data;
+}
+
+
+
+export const setPaymentProducts= async(body)=>{
+    const {data} =await axios.post(`${URL}/api/v1/product/payment-success`,body)
     return data;
 }

@@ -224,24 +224,53 @@ export const updateProfileController=async(req,res)=>{
 // export default {registerController}
 
 
-export const getOrdersController=async(req,res)=>{
-   try{
-    const orders= await orderModel.find({buyer:req?.user?._id}).populate("products","-photo").populate("buyer","name");
-    res.json(orders)
+// export const getOrdersController=async(req,res)=>{
+//    try{
+//     const orders= await orderModel.find({buyer:req?.user?._id}).populate("products","-photo -pic2").populate("buyer","name");
+//     res.json(orders)
 
-   }
-   catch(error){
-    console.log("Error while getting all orders ",error.message);
+//    }
+//    catch(error){
+//     console.log("Error while getting all orders ",error.message);
+//     res.status(400).send({
+//       success:false,
+//       error
+//     })
+//    }
+// }
+
+
+export const getOrdersController = async (req, res) => {
+  try {
+
+    console.log("req ids ",req.user)
+    const orders = await orderModel
+      .find({ buyer: req?.user?._id })
+      .populate({
+        path: "products.productId",
+        select: "-photo -pic2"
+      })
+      .populate("buyer", "name");
+
+      console.log("orders are ",orders);
+
+    res.json(orders);
+  } catch (error) {
+    console.log("Error while getting all orders ", error.message);
     res.status(400).send({
-      success:false,
+      success: false,
       error
-    })
-   }
-}
+    });
+  }
+};
 
 export const getAllOrdersController= async(req,res)=>{
     try{
-      const orders= await orderModel.find({}).populate("products","-photo").populate("buyer","name").sort({createdAt:"-1"});
+      const orders= await orderModel.find({}).populate({
+        path: "products.productId",
+        select: "-photo -pic2"
+      })
+      .populate("buyer", "name").sort({createdAt:"-1"});
     res.json(orders)
     }
     catch(error){

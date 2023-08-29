@@ -10,10 +10,10 @@ import useCategory from "../../hooks/useCategory";
 
 import { useCart } from "../../context/cart";
 // import AccountCircle from '@mui/icons-material/AccountCircle';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useWishList } from "../../context/wishlist";
 
 const Header = () => {
@@ -23,7 +23,7 @@ const Header = () => {
 
   const [cart] = useCart();
 
-  const [wishList]=useWishList();
+  const [wishList] = useWishList();
 
   const handleLogout = () => {
     setAuth({
@@ -37,7 +37,10 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary"  style={{position:"fixed", width:"100%", top:"0", zIndex: 1000}}>
+      <nav
+        className="navbar navbar-expand-lg bg-body-tertiary"
+        style={{ position: "fixed", width: "100%", top: "0", zIndex: 1000 }}
+      >
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -122,8 +125,28 @@ const Header = () => {
                         </NavLink>
                       </li>
                       <li onClick={handleLogout}>
-                        <NavLink to="/login" className="dropdown-item">
+                        <NavLink to="/login" className="dropdown-item" activeClassName="active-nav-link">
                           Logout
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/user/orders"
+                          className="dropdown-item"
+                          activeClassName="active-nav-link"
+                          style={{textDecoration:'none'}}
+                        >
+                          My Orders
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/user/orders"
+                          className="dropdown-item"
+                          activeClassName="active-nav-link"
+                          style={{textDecoration:'none'}}
+                        >
+                          Profile
                         </NavLink>
                       </li>
                     </ul>
@@ -137,7 +160,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <NavLink to="/wishList" className="nav-link">
-                <FontAwesomeIcon icon={faHeart}/> ({wishList?.length})
+                  <FontAwesomeIcon icon={faHeart} /> ({wishList?.length})
                 </NavLink>
               </li>
             </ul>
