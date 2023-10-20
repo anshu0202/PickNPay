@@ -3,6 +3,7 @@ import Layout from '../../components/Layout/Layout';
 import UserMenu from '../../components/Layout/UserMenu';
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-hot-toast';
+import "../../style/profile.css";
 import { RegisterData, updateProfile } from '../../services/LoginApi';
 
 const Profile = () => {
@@ -59,13 +60,13 @@ const Profile = () => {
     
   return (
     <Layout title={"Profile"} >
-    <div className="container-fluid m-3 p-3">
-    <div className='row'>
-        <div className="col-md-3">
+    {/* <div className="container-fluid m-2 p-3 profile-page"> */}
+    <div className='container-fluid  row profile-page '>
+        <div className="col-md-3 ll">
        <UserMenu/>
         </div>
-        <div className="col-md-8">
-            <div className="form-container" style={{ marginTop: "20px" }}>
+        <div className="col-md-8 rr">
+            <div className="form-container" >
               <form onSubmit={profileUpdate}>
                 <h4 className="title">USER PROFILE</h4>
                 <div className="mb-3">
@@ -121,7 +122,7 @@ const Profile = () => {
 
     </div>
 
-    </div>
+    {/* </div> */}
       
     </Layout>
   )

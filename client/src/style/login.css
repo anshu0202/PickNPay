@@ -35,8 +35,8 @@
 
 .registerPage{
     display: flex;
-    padding-top: 5rem ;
-   
+    padding-top: 10% ;
+    
     justify-content: center;
     align-items: center;
 }
@@ -113,18 +113,21 @@
 }
 
 
-.logged{
+/* .logged{
     display: flex;
     padding-top: 5rem;
     justify-content: center;
-}
+} */
 
 
 .mainlogin{
-    align-items: center;
+    
     /* gap: 2rem; */
     display: flex;
+    align-items: center;
     justify-content: center;
+    padding-top: 10%;
+
 }
 
  .loginLeft{

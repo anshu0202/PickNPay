@@ -1,0 +1,17 @@
+.profile-page{
+    border: 2px solid red;
+    
+    padding: 2rem;
+    width: 90%;
+    margin: auto;
+    height: 50vh;
+    border: 2px solid grey;  
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
+  border-radius: 0.5rem;
+  background-color: rgb(242, 241, 241);
+    box-shadow: 0px 0px 10px -2px black;
+}
+

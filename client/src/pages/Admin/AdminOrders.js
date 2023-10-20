@@ -62,13 +62,13 @@ const AdminOrders = () => {
            <div className="col-md-9" style={{margin:"auto"}}>
     
     <h1 className='text-center'>
-      All Orders
+      All Orders  ({orders.length})
     </h1>
     {
       orders?.map((o,i)=>{
         return (
           <div className="border shadow">
-          <table className='table'>
+          <table className='table table-striped'>
           <thead>
             <tr>
               <th scope='col'>#</th>

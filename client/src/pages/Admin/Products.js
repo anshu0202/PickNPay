@@ -39,7 +39,7 @@ const Product = () => {
       <div className="admin-dashboard-product">
         <AdminMenu />
         <div className="admin-dashboard-product-content">
-          <h1 className="text-center">All Products</h1>
+          <h1 className="text-center">All Products ({products.length})</h1>
           <div className="admin-pro-list">
             {products?.map((product) => (
               <Link
@@ -47,17 +47,7 @@ const Product = () => {
                 key={product._id}
                 to={`/dashboard/admin/products/${product.slug}`}
               >
-                {/* <div className="card m-2" style={{ width: "18rem" }}>
-                  <img
-                    src={`${URL}/api/v1/product/product-photo/${product._id}`}
-                    className="card-img-top"
-                    alt={product.name}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text">{product.description}</p>
-                  </div>
-                </div> */}
+               
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
                     src={`${URL}/api/v1/product/product-photo/${product._id}`}

@@ -1,0 +1,38 @@
+.items-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    /* border: 2px solid red; */
+    /* flex-direction: column; */
+    /* border: 2px solid red; */
+    
+  }
+  
+  .item-input {
+    flex: 1; /* Distribute available space equally among input boxes */
+    
+    margin-right: 10px; 
+   /* border: 2px solid red; */
+    /* margin-bottom: 5px; */
+    /* Add some spacing between input boxes */
+    /* margin-bottom: 10px; */
+
+  }
+
+  .proDetails {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+  }
+  
+  .productName,
+  .realName {
+    margin: 10px; /* Add margin for spacing */
+    text-align: center; /* Center the text within each div */
+  }
+  

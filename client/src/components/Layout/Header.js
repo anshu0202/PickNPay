@@ -74,7 +74,8 @@ const Header = () => {
                 </Link>
 
                 <ul className="dropdown-menu">
-                  <Link className="dropdown-item" to={`/categories`}>
+                  {/* <Link className="dropdown-item" to={`/categories`}> */}
+                  <Link className="dropdown-item" to={`/`}>
                     All Categories
                   </Link>
                   {categories?.map((cat) => (
@@ -114,7 +115,21 @@ const Header = () => {
                       {auth?.user?.name}
                     </NavLink>
                     <ul className="dropdown-menu">
-                      <li>
+                      {auth?.user?.role === 1 ? (
+                        <>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to={`/dashboard/admin`}
+                            >
+                              Dashboard
+                            </NavLink>
+                          </li>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      {/* <li>
                         <NavLink
                           className="dropdown-item"
                           to={`/dashboard/${
@@ -123,9 +138,13 @@ const Header = () => {
                         >
                           Dashboard
                         </NavLink>
-                      </li>
+                      </li> */}
                       <li onClick={handleLogout}>
-                        <NavLink to="/login" className="dropdown-item" activeClassName="active-nav-link">
+                        <NavLink
+                          to="/login"
+                          className="dropdown-item"
+                          activeClassName="active-nav-link"
+                        >
                           Logout
                         </NavLink>
                       </li>
@@ -134,17 +153,17 @@ const Header = () => {
                           to="/dashboard/user/orders"
                           className="dropdown-item"
                           activeClassName="active-nav-link"
-                          style={{textDecoration:'none'}}
+                          style={{ textDecoration: "none" }}
                         >
                           My Orders
                         </NavLink>
                       </li>
                       <li>
                         <NavLink
-                          to="/dashboard/user/orders"
+                          to="/dashboard/user/profile"
                           className="dropdown-item"
                           activeClassName="active-nav-link"
-                          style={{textDecoration:'none'}}
+                          style={{ textDecoration: "none" }}
                         >
                           Profile
                         </NavLink>

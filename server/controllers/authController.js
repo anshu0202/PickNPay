@@ -264,22 +264,37 @@ export const getOrdersController = async (req, res) => {
   }
 };
 
-export const getAllOrdersController= async(req,res)=>{
+export const getAllUsersController= async(req,res)=>{
     try{
-      const orders= await orderModel.find({}).populate({
-        path: "products.productId",
-        select: "-photo -pic2"
-      })
-      .populate("buyer", "name").sort({createdAt:"-1"});
-    res.json(orders)
+      const users= await userModel.find({});
+    res.json(users)
     }
     catch(error){
-      console.log("Error while getting all orders ",error.message);
+      console.log("Error while getting all users by admin ",error.message);
       res.status(400).send({
         error,
         success:false
       })
     }
+}
+
+
+export const getAllOrdersController= async(req,res)=>{
+  try{
+    const orders= await orderModel.find({}).populate({
+      path: "products.productId",
+      select: "-photo -pic2"
+    })
+    .populate("buyer", "name").sort({createdAt:"-1"});
+  res.json(orders)
+  }
+  catch(error){
+    console.log("Error while getting all orders ",error.message);
+    res.status(400).send({
+      error,
+      success:false
+    })
+  }
 }
 
 export const orderStatusController= async(req,res)=>{

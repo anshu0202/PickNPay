@@ -2,11 +2,15 @@ import React from 'react'
 import { Checkbox, Radio } from 'antd';
 
 const Filter = ({handleFilter,categories,Prices,setRadio}) => {
+
+  
   return (
     <div className='filter-section'>
        <h4 className='text-center'>Filters</h4>
-    <h5 className='text-center'>   Categories  </h5>
-    <hr />
+       {
+         categories.length>0?<>
+         <h5 className='text-center'>   Categories  </h5>
+         <hr />
               <div className="d-flex flex-column cat-list">
 
               {
@@ -15,6 +19,13 @@ const Filter = ({handleFilter,categories,Prices,setRadio}) => {
                 ))
               }
               </div>
+              
+              <hr />
+         </>:<></> 
+       }
+
+
+
               <h4 className='text-center mt-4'>   Price  </h4>
               <hr />
               <div className="d-flex flex-column">

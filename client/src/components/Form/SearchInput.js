@@ -13,7 +13,9 @@ const SearchInput = () => {
     const handleSubmit= async(e)=>{
         e.preventDefault();
         try{
-
+            if(values.keyword==="") {
+              return;
+            }
           const data=await getSearchProducts(values.keyword);
 
           setValues({...values,results:data});

@@ -38,13 +38,15 @@
 .footer{
    color:white;
    padding: 20px;
-   /* background: rgb(215, 104, 73); */
-
+   
+  
  background: rgb(110, 189, 246);
-   /* background: linear-gradient(to right, rgb(192, 131, 131),rgb(171, 55, 55)); */
+   
    background: linear-gradient(to right,rgb(196, 223, 242),rgb(34, 117, 176));
 }
 
+
+ 
 .footer a{
     text-decoration: none;
     color: white;

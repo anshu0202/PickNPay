@@ -93,7 +93,7 @@ const Login = () => {
 
   return (
     <Layout title={"Login"}>
-      <div className="logged">
+      {/* <div  className="logged" > */}
         <div className="mainlogin">
           <div className="loginLeft">
             <h4 className="text-center" style={{ color: "white" }}>
@@ -144,7 +144,7 @@ const Login = () => {
             </form>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </Layout>
   );
 };
